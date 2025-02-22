@@ -5,7 +5,8 @@ pipeline {
         DOCKER_IMAGE = 'ritika140601/rideshare:latest'
         DOCKER_HUB_CREDENTIALS = 'docker-hub'  // Docker credentials
         GIT_CREDENTIALS = 'github-credentials'  // Jenkins GitHub credentials
-        GIT_REPO = 'https://github.com/ritika1406/RideShare'
+
+        GIT_REPO = 'https://github.com/ritika1406/RideShare.git'
 
     }
 
