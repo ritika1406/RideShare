@@ -13,7 +13,6 @@ app.get('/', function (req, res)  {
 
 const routes = require("./routes/index");
 
-app.use(express.json()); // Middleware to parse JSON request body
 app.use("/api", routes); // Base route for all APIs
 
 // Start the server
