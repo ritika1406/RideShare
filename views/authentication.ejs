@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Page</title>
+    <style>
+        .successfull {
+            display: none;
+            color: green;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <h3>Welcome to RideShare</h3>
+    <form id="registerForm">
+        <input type="text" name="name" placeholder="Write your Full Name" required>
+        <input type="number" name="phone" placeholder="Enter Mobile number" required>
+        <input type="email" name="email" placeholder="Enter Email" required>
+        <button type="button" id="submit">Submit</button> 
+    </form>
+    
+    <div class="successfull">
+        <p><b>Registration Successful!</b></p>
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $("#submit").click(function(event) {
+                event.preventDefault(); // Prevent form submission
+
+                let name = $("input[name='name']").val();
+                let phone = $("input[name='phone']").val();
+                let email = $("input[name='email']").val();
+
+                if (!name || !phone || !email) {
+                    alert("Please fill in all fields.");
+                    return;
+                }
+
+                $.ajax({
+                    url: '/api/auth/register',
+                    type: 'POST',
+                    contentType: 'application/json; charset=utf-8',
+                    data: JSON.stringify({ name: name, phone: phone, email: email }),
+                    success: function(res) {
+                        $(".successfull").show(); // Show success message
+                    },
+                    error: function(error) {
+                        console.log("Error:", error);
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
